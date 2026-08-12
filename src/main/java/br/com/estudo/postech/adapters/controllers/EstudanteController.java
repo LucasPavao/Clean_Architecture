@@ -2,6 +2,7 @@ package br.com.estudo.postech.adapters.controllers;
 
 import br.com.estudo.postech.adapters.gateways.EstudanteGateway;
 import br.com.estudo.postech.adapters.presenters.EstudantePresenter;
+import br.com.estudo.postech.domain.usecases.BuscarEstudantePorNomeUseCase;
 import br.com.estudo.postech.domain.usecases.CadastrarEstudanteUseCase;
 import br.com.estudo.postech.dto.EstudanteDTO;
 import br.com.estudo.postech.dto.NovoEstudanteDTO;
@@ -25,10 +26,23 @@ public class EstudanteController {
         var useCase = CadastrarEstudanteUseCase.create(estudanteGateway);
         try {
             var estudante = useCase.run(novoEstudanteDTO);
-            var estudanteDto = EstudantePresenter.ToDTO(estudante);
+            var estudanteDto = EstudantePresenter.toDTO(estudante);
             return estudanteDto;
         } catch (EstudanteJaExistenteException e) {
             return null;  // deve retornar algo melhor
+        }
+    }
+
+    public EstudanteDTO BuscarPorNome(String nome) {
+        var estudanteGateway = EstudanteGateway.create(this.dataStorageSource);
+        var useCase = BuscarEstudantePorNomeUseCase.create(estudanteGateway);
+
+        try {
+            var estudante = useCase.run(nome);
+            var estudanteDTO = EstudantePresenter.toDTO(estudante);
+            return estudanteDTO;
+        } catch (EstudanteJaExistenteException e) {
+            return null;
         }
     }
 

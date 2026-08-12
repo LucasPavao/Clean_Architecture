@@ -1,15 +1,25 @@
+# Compilação e Artefatos (Maven / Gradle)
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+build/
+.gradle/
+*.class
+*.jar
+*.war
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+# Exceção para o Maven Wrapper (caso use `mvnw`)
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDEs (IntelliJ IDEA, Eclipse, VS Code)
+.idea/
 *.iws
 *.iml
 *.ipr
+.vscode/
+.settings/
+.classpath
+.project/
 
-.idea
+# Logs e arquivos temporários
+*.log
+.DS_Store
+Thumbs.db

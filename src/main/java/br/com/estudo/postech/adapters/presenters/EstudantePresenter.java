@@ -5,7 +5,7 @@ import br.com.estudo.postech.dto.EstudanteDTO;
 
 public class EstudantePresenter {
 
-    public static EstudanteDTO ToDTO(Estudante estudante) {
+    public static EstudanteDTO toDTO(Estudante estudante) {
         final String identificacao = estudante.getIdentificacaoInterna();
         final String identificacaoOfuscada = identificacao.charAt(1) + "..." + identificacao.charAt(identificacao.length() - 1);
 
